@@ -19,25 +19,25 @@ public class UnitTests {
 
     @Test
     public void calculatorMultiplicationTest() throws CalculatorException {
-        Assert.assertEquals("Результат сложения отличается от ожидаемого",
+        Assert.assertEquals("Результат умножения отличается от ожидаемого",
                 Double.compare(new Calculator().calculate(1, 2, "*"), 2), 0);
     }
 
     @Test
     public void calculatorDivisionByNotZeroTest() throws CalculatorException {
-        Assert.assertEquals("Результат сложения отличается от ожидаемого",
+        Assert.assertEquals("Результат деления отличается от ожидаемого",
                 Double.compare(new Calculator().calculate(6, 2, "/"), 3), 0);
     }
 
     @Test
     public void calculatorDivisionByZeroTest() throws CalculatorException {
-        Assert.assertThrows("Результат сложения отличается от ожидаемого",
+        Assert.assertThrows("Результат деления на 0 отличается от ожидаемого",
                 ArithmeticException.class, () -> new Calculator().calculate(5, 0, "/"));
     }
 
     @Test
     public void calculatorWithIncorrectOperationTest() throws CalculatorException {
-        Assert.assertThrows("Результат сложения отличается от ожидаемого",
+        Assert.assertThrows("Результат выражения отличается от ожидаемого",
                 CalculatorException.class, () -> new Calculator().calculate(5, 1, "&"));
     }
 }
