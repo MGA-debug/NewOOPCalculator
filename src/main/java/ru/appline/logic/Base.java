@@ -4,30 +4,39 @@ package ru.appline.logic;
 import ru.appline.logic.data.calculator.Calculator;
 import ru.appline.logic.data.calculator.CalculatorException;
 
+import java.util.Scanner;
+
 public class Base {
 
     public static void main(String[] args) {
-
         Calculator calculator = new Calculator();
-        try {
-            System.out.println(calculator
-                    .calculate(1, 0, "/"));
-        } catch (CalculatorException | ArithmeticException e) {
-            System.err.println(e.getMessage());
-        }
+        Scanner scanner = new Scanner(System.in);
 
-        try {
-            System.out.println(calculator
-                    .calculate(1, 0, "&"));
-        } catch (CalculatorException | ArithmeticException e) {
-            System.err.println(e.getMessage());
+        while (true) {
+            try {
+                System.out.println("Введите первое число");
+                double firstArg = calculator.checkOperand(scanner.nextLine());
+                System.out.println("Введите операцию");
+                String operation = scanner.nextLine();
+                System.out.println("Введите второе число");
+                double secondArg = calculator.checkOperand(scanner.nextLine());
+                resultFormat(calculator.calculate(firstArg, secondArg, operation));
+            } catch (CalculatorException e) {
+                System.err.print(e.getMessage());
+                continue;
+            }
+            System.out.println("Продолжить работу? да/нет");
+            String command = scanner.nextLine();
+            if (!"да".equals(command)) {
+                scanner.close();
+                break;
+            }
         }
+    }
 
-        try {
-            System.out.println(calculator
-                    .calculate(1, 0, "*"));
-        } catch (CalculatorException e) {
-            System.err.println(e.getMessage());
-        }
+    public static void resultFormat(double result) {
+        System.out.println("Результат: ");
+        System.out.printf("%+.4f", result);
+        System.out.println("");
     }
 }

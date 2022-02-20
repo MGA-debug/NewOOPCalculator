@@ -23,6 +23,16 @@ public class Calculator {
         return result;
     }
 
+    public double checkOperand(String data) throws CalculatorException {
+        double d = 0;
+        try {
+            d = Double.parseDouble(data);
+        } catch (NumberFormatException e) {
+            throw new CalculatorException("Введите число");
+        }
+        return d;
+    }
+
     private double division(double firstArg, double secondArg) {
         checkSecondArgNotEqualsZero(secondArg);
         return firstArg / secondArg;
